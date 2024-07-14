@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 import { useEmailVerification } from "../hooks/useEmailVerification";
 import { useResendCode } from "../hooks/useResendCode";
-import BackDrop from "../../shared/components/BackDrop";
+import LoadingOverlay from "../../shared/components/LoadingOverlay";
 import Loader from "../../shared/components/Loader";
 
 const EmailVerification = () => {
@@ -73,9 +73,9 @@ const EmailVerification = () => {
   return (
     <div className="h-screen md:bg-primary_color flex flex-col items-center justify-center">
       {(isPending || resendCodePending) && (
-        <BackDrop>
+        <LoadingOverlay>
           <Loader />
-        </BackDrop>
+        </LoadingOverlay>
       )}
       <section className="px-4 sm:px-10 flex flex-col gap-y-10 md:bg-white md:h-fit md:w-fit p-10 md:rounded-custom-35">
         <div className="flex flex-col gap-y-2">

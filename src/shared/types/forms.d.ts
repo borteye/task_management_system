@@ -1,6 +1,6 @@
 import { JsxElement } from "typescript";
 
-type HeroIconType = ForwardRefExoticComponent<
+export type HeroIconType = ForwardRefExoticComponent<
   Omit<SVGProps<SVGSVGElement>, "ref"> & {
     title?: string;
     titleId?: string;

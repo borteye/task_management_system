@@ -4,6 +4,8 @@ import SignUp from "./authentication/SignUp";
 import EmailVerification from "./authentication/EmailVerification";
 import ForgotPassword from "./authentication/ForgotPassword";
 import ResetPassword from "./authentication/ResetPassword";
+import Dashboard from "./pages/Dashboard";
+import Tasks from "./pages/Tasks";
 
 function App() {
   return (
@@ -15,6 +17,8 @@ function App() {
           <Route path="/forgot-password" element={<ForgotPassword />} />
           <Route path="/email-verification" element={<EmailVerification />} />
           <Route path="/reset-password" element={<ResetPassword />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/my-tasks" element={<Tasks />} />
         </Routes>
       </Router>
     </div>

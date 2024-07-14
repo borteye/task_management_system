@@ -12,13 +12,13 @@ import { SignUpValues } from "../../shared/types/auth";
 import { SignUpError, SignUpSuccess } from "../../shared/types/apiResponse";
 import { toast } from "sonner";
 import { useSignUp } from "../hooks/useSignUp";
-import BackDrop from "../../shared/components/BackDrop";
+import LoadingOverlay from "../../shared/components/LoadingOverlay";
 import Loader from "../../shared/components/Loader";
 import { useNavigate } from "react-router-dom";
 type Props = {};
 
 const SignUp = () => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
 
   const navigateToSignIn = () => {
     navigate("/");
@@ -32,8 +32,6 @@ const SignUp = () => {
     toast.success(data.message, {
       position: "top-right",
     });
-
-  
   };
 
   const onError = (errorData: Error) => {
@@ -47,7 +45,6 @@ const SignUp = () => {
   };
 
   const { mutate, isPending } = useSignUp(onSuccess, onError);
-
 
   const initialValues = {
     username: "",
@@ -76,9 +73,9 @@ const SignUp = () => {
   return (
     <div className="py-4 sm:py-8  font-poppins-regular flex flex-col md:flex-row-reverse sm:h-screen md:items-center justify-center gap-4">
       {isPending && (
-        <BackDrop>
+        <LoadingOverlay>
           <Loader />
-        </BackDrop>
+        </LoadingOverlay>
       )}
       <section className="flex items-center md:w-2/4 lg:w-2/5 ">
         <img src={signUp} alt="sign_up illustration" />
@@ -172,7 +169,10 @@ const SignUp = () => {
         </form>
         <p className="font-poppins-regular text-center cursor-pointer">
           Already have an account?{" "}
-          <span onClick={navigateToSignIn} className="font-poppins-semibold text-primary_color">
+          <span
+            onClick={navigateToSignIn}
+            className="font-poppins-semibold text-primary_color"
+          >
             Sign In
           </span>
         </p>

@@ -13,7 +13,7 @@ import {
 import { SET_TOKEN } from "../../redux/features/tokenSlice";
 import { toast } from "sonner";
 import { useForgotPassword } from "../hooks/useForgotPassword";
-import BackDrop from "../../shared/components/BackDrop";
+import LoadingOverlay from "../../shared/components/LoadingOverlay";
 import Loader from "../../shared/components/Loader";
 
 const ForgotPassword = () => {
@@ -73,9 +73,9 @@ const ForgotPassword = () => {
   return (
     <div className="sm:h-screen font-poppins-regular  md:bg-primary_color flex flex-col items-center justify-center">
       {isPending && (
-        <BackDrop>
+        <LoadingOverlay>
           <Loader />
-        </BackDrop>
+        </LoadingOverlay>
       )}
       <section className="sm:hidden">
         <img src={forgotPassword} alt="forgot_password illustration" />

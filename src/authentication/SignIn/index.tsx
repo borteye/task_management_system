@@ -10,7 +10,7 @@ import { SignInError, SignInSuccess } from "../../shared/types/apiResponse";
 import { SET_TOKEN } from "../../redux/features/tokenSlice";
 import { toast } from "sonner";
 import { useSignIn } from "../hooks/useSignIn";
-import BackDrop from "../../shared/components/BackDrop";
+import LoadingOverlay from "../../shared/components/LoadingOverlay";
 import Loader from "../../shared/components/Loader";
 import { useNavigate } from "react-router-dom";
 
@@ -34,7 +34,7 @@ const SignIn = () => {
     if (!success) return;
 
     dispatch(SET_TOKEN({ token: data.token }));
- 
+
     toast.success(data.message, {
       position: "top-right",
     });
@@ -78,9 +78,9 @@ const SignIn = () => {
   return (
     <div className="py-4 sm:py-8 font-poppins-regular flex flex-col md:flex-row sm:h-screen md:items-center justify-center gap-4">
       {isPending && (
-        <BackDrop>
+        <LoadingOverlay>
           <Loader />
-        </BackDrop>
+        </LoadingOverlay>
       )}
       <section className="flex items-center md:w-2/4 lg:w-2/5 ">
         <img src={signIn} alt="sign_in illustration" />
