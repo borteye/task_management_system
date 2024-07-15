@@ -26,8 +26,9 @@ module.exports = {
         'custom-370': '370px',
         sideBarExpanded: "250px",
         sideBarCollapsed: "75px",
-        navBarExpanded: 'calc(100% - 75px)',
-        navBarCollapsed: 'calc(100% - 250px)',
+        contentExpanded: 'calc(100% - 75px)',
+        contentCollapsed : 'calc(100% - 250px)',
+
       },
       borderRadius: {
         'custom-35': '35px',

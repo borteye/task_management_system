@@ -13,13 +13,11 @@ import profile from "../../assets/images/Customer.png";
 import { useNavigate } from "react-router-dom";
 import BackDrop from "./BackDrop";
 
-type Props = {};
-
-const { pathname } = window.location;
-
-const SideBar = (props: Props) => {
+const SideBar = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
   const [hoveredLabel, setHoveredLabel] = useState<string | null>(null);
+
+  const { pathname } = window.location;
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,8 +25,9 @@ const SideBar = (props: Props) => {
   const isNavbarToggled = useSelector(selectNavBarToggle);
 
   const navigateToLocation = (location: string | undefined) => {
-    if (location) navigate(location);
-    dispatch(SET_SIDEBAR_TOGGLE(false));
+    if (location) {
+      navigate(location);
+    }
   };
 
   const toggleSidebarExpansion = () => {
@@ -52,7 +51,7 @@ const SideBar = (props: Props) => {
                 isNavbarToggled && "w-sideBarExpanded"
               }  md:flex`
         } 
-       h-screen bg-white transition-all duration-300 md:flex flex-col gap-y-10 px-4 py-8 relative z-custom-1000 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]`}
+       h-screen h- fixed left-0 bg-white transition-all duration-300 md:flex flex-col gap-y-10 px-4 py-8  z-custom-1000 shadow-[0px_2px_3px_-1px_rgba(0,0,0,0.1),0px_1px_0px_0px_rgba(25,28,33,0.02),0px_0px_0px_1px_rgba(25,28,33,0.08)]`}
       >
         <div className={`flex items-center justify-between`}>
           <div
@@ -87,9 +86,7 @@ const SideBar = (props: Props) => {
             return (
               <li
                 key={item.label}
-                onClick={() => {
-                  navigateToLocation(item.path);
-                }}
+                onClick={() => navigateToLocation(item.path)}
                 className={`flex items-center ${
                   isExpanded
                     ? "justify-between"
@@ -97,7 +94,9 @@ const SideBar = (props: Props) => {
                         isNavbarToggled && "justify-between"
                       }`
                 } font-poppins-medium cursor-pointer text-base ${
-                  item.path === pathname ? "bg-black text-white" : ""
+                  item.path === pathname
+                    ? "bg-black text-white"
+                    : "bg-none text-black"
                 } hover:bg-black hover:text-white py-2 px-3 rounded-xl `}
                 onMouseEnter={() => setHoveredLabel(item.label)}
                 onMouseLeave={() => setHoveredLabel(null)}

@@ -1,16 +1,5 @@
-import React from "react";
-import SideBar from "../../shared/components/SideBar";
-import NavBar from "../../shared/components/NavBar";
-
-type Props = {};
-
-const Dashboard = (props: Props) => {
-  return (
-    <div>
-      <SideBar />
-      <NavBar />
-    </div>
-  );
+const Dashboard = () => {
+  return <div className="pt-28 md:pt-36">Dashboard</div>;
 };
 
 export default Dashboard;
