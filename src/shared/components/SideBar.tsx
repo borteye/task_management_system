@@ -12,6 +12,10 @@ import {
 import profile from "../../assets/images/Customer.png";
 import { useNavigate } from "react-router-dom";
 import BackDrop from "./BackDrop";
+import { CLEAR_USER, selectUsername } from "../../redux/features/userSlice";
+import capitalize from "../utils/capitalize";
+import { CLEAR_TOKEN } from "../../redux/features/tokenSlice";
+import { toast } from "sonner";
 
 const SideBar = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -23,6 +27,7 @@ const SideBar = () => {
   const dispatch = useDispatch();
 
   const isNavbarToggled = useSelector(selectNavBarToggle);
+  const username = useSelector(selectUsername);
 
   const navigateToLocation = (location: string | undefined) => {
     if (location) {
@@ -38,6 +43,21 @@ const SideBar = () => {
 
   const toggleNavbarHidden = () => {
     dispatch(SET_NAVBAR_TOGGLE(false));
+  };
+
+  const handleSignOut = () => {
+    dispatch(CLEAR_USER());
+    dispatch(SET_SIDEBAR_TOGGLE(false));
+    dispatch(SET_NAVBAR_TOGGLE(false));
+    dispatch(CLEAR_TOKEN());
+
+    toast.success("Signed out successfully", {
+      position: "top-right",
+    });
+
+    setTimeout(() => {
+      navigate("/");
+    }, 5000);
   };
 
   return (
@@ -67,7 +87,7 @@ const SideBar = () => {
               className="w-12 h-12 md:w-14 md:h-14  object-cover rounded-full"
             />
             <p className={`font-poppins-semibold md:text-xl `}>
-              Gabriel <br /> Borteye
+              {username && capitalize(username)}
             </p>
           </div>
 
@@ -133,7 +153,10 @@ const SideBar = () => {
           onClick={toggleNavbarHidden}
           className="size-8 cursor-pointer absolute top-4 right-4 md:hidden"
         />
-        <div className="cursor-pointer flex items-center gap-x-2 absolute bottom-4 left-7 font-poppins-semibold">
+        <div
+          onClick={handleSignOut}
+          className="cursor-pointer flex items-center gap-x-2 absolute bottom-4 left-7 font-poppins-semibold"
+        >
           <ArrowRightStartOnRectangleIcon className="size-6 " />
           <p
             className={`${

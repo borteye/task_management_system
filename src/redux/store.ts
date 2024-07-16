@@ -11,10 +11,12 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import tokenReducer from "./features/tokenSlice";
+import userReducer from "./features/userSlice";
 import toggleReducer from "./features/toggleSlice";
 
 const rootReducer = combineReducers({
   token: tokenReducer,
+  user: userReducer,
   toggle: toggleReducer,
 });
 

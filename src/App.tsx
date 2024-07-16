@@ -16,8 +16,8 @@ function App() {
         <Routes>
           <Route path="/" Component={SignIn} />
           <Route path="/sign-up" Component={SignUp} />
+          <Route path="/forgot-password" Component={ForgotPassword} />
           <Route Component={ProtectedRoutes}>
-            <Route path="/forgot-password" Component={ForgotPassword} />
             <Route path="/email-verification" Component={EmailVerification} />
             <Route path="/reset-password" Component={ResetPassword} />
             <Route Component={Layout}>

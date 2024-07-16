@@ -18,7 +18,7 @@ export const signUpSchema = yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .matches(
       passwordRegex,
-      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      "Password must contain at least one uppercase letter, one lowercase letter, one string, and one special character"
     )
     .required("Password is required"),
   confirmPassword: yup
@@ -51,7 +51,7 @@ export const resetPasswordSchema = yup.object().shape({
     .min(8, "Password must be at least 8 characters")
     .matches(
       passwordRegex,
-      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character"
+      "Password must contain at least one uppercase letter, one lowercase letter, one string, and one special character"
     )
     .required("Password is required"),
   confirmPassword: yup
@@ -61,8 +61,8 @@ export const resetPasswordSchema = yup.object().shape({
 });
 
 export const emailVerificationSchema = yup.object().shape({
-  codeDigitOne: yup.number().max(1).required(),
-  codeDigitTwo: yup.number().max(1).required(),
-  codeDigitThree: yup.number().max(1).required(),
-  codeDigitFour: yup.number().max(1).required(),
+  codeDigitOne: yup.string().max(1).required(),
+  codeDigitTwo: yup.string().max(1).required(),
+  codeDigitThree: yup.string().max(1).required(),
+  codeDigitFour: yup.string().max(1).required(),
 });

@@ -13,6 +13,7 @@ import { useSignIn } from "../hooks/useSignIn";
 import LoadingOverlay from "../../shared/components/LoadingOverlay";
 import Loader from "../../shared/components/Loader";
 import { useNavigate } from "react-router-dom";
+import { SET_USER } from "../../redux/features/userSlice";
 
 type Props = {};
 
@@ -33,11 +34,23 @@ const SignIn = () => {
 
     if (!success) return;
 
+    console.log("data: ", data);
+
     dispatch(SET_TOKEN({ token: data.token }));
+    dispatch(
+      SET_USER({
+        userid: data.user.userid,
+        username: data.user.username,
+        email: data.user.email,
+        profile: data.user.profile,
+      })
+    );
 
     toast.success(data.message, {
       position: "top-right",
     });
+
+    navigate("/dashboard");
   };
 
   const onError = (errorData: Error) => {

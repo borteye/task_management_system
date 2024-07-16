@@ -14,10 +14,13 @@ import { useEmailVerification } from "../hooks/useEmailVerification";
 import { useResendCode } from "../hooks/useResendCode";
 import LoadingOverlay from "../../shared/components/LoadingOverlay";
 import Loader from "../../shared/components/Loader";
+import { useDispatch } from "react-redux";
+import { CLEAR_TOKEN } from "../../redux/features/tokenSlice";
 
 const EmailVerification = () => {
   const { inputRefs, handleNext } = useInputRefs();
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onSuccess = (successData: EmailVerificationSuccess) => {
     const { data, success } = successData;
@@ -36,11 +39,14 @@ const EmailVerification = () => {
 
     if (object.success) return;
 
+    dispatch(CLEAR_TOKEN());
+
     toast.error(`${object.errorMessage || object.message || object.error} 🙊`, {
       position: "top-right",
     });
 
-    object.message && navigate("/forgot-password");
+    (object.errorMessage || object.message || object.error) &&
+      navigate("/forgot-password");
   };
 
   const { mutate, isPending } = useEmailVerification(onSuccess, onError);
@@ -58,6 +64,7 @@ const EmailVerification = () => {
     const body = {
       verificationCode: `${values.codeDigitOne}${values.codeDigitTwo}${values.codeDigitThree}${values.codeDigitFour}`,
     };
+
     mutate(body);
   };
 
@@ -67,8 +74,7 @@ const EmailVerification = () => {
     onSubmit: OnSubmit,
   });
 
-  const { values, handleChange, handleSubmit, handleBlur, touched, errors } =
-    formik;
+  const { values, handleChange, handleSubmit } = formik;
 
   return (
     <div className="h-screen md:bg-primary_color flex flex-col items-center justify-center">

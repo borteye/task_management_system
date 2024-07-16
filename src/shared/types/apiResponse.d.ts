@@ -19,7 +19,7 @@ export interface SignInError {
 
 export interface SignUpSuccess {
   success: boolean;
-  data: { message: string };
+ message: string 
 }
 
 export interface SignUpError {

@@ -28,7 +28,8 @@ export const useResendCodeHandler = () => {
       position: "top-right",
     });
 
-    object.message && navigate("/forgot-password");
+    (object.errorMessage || object.message || object.error) &&
+      navigate("/forgot-password");
   };
 
   return { onSuccess, onError };

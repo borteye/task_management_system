@@ -25,13 +25,15 @@ const SignUp = () => {
   };
 
   const onSuccess = (successData: SignUpSuccess) => {
-    const { success, data } = successData;
+    const { success, message } = successData;
 
     if (!success) return;
 
-    toast.success(data.message, {
+    toast.success(message, {
       position: "top-right",
     });
+
+    navigateToSignIn();
   };
 
   const onError = (errorData: Error) => {

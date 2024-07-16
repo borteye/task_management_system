@@ -26,11 +26,11 @@ const ResetPassword = (props: Props) => {
 
     if (!success) return;
 
+    dispatch(CLEAR_TOKEN());
+
     toast.success(data.message, {
       position: "top-right",
     });
-
-    dispatch(CLEAR_TOKEN());
 
     navigate("/");
   };
@@ -44,7 +44,7 @@ const ResetPassword = (props: Props) => {
       position: "top-right",
     });
 
-    object.message && navigate("/forgot-password");
+    (object.errorMessage || object.message) && navigate("/forgot-password");
   };
 
   const { mutate, isPending } = useResetPassword(onSuccess, onError);
@@ -55,8 +55,8 @@ const ResetPassword = (props: Props) => {
   };
   const OnSubmit = (values: ResetPasswordValues) => {
     const body = {
-      password: values?.password,
-      confirmPassword: values?.confirmPassword,
+      password: values.password,
+      confirmPassword: values.confirmPassword,
     };
 
     mutate(body);
