@@ -25,7 +25,4 @@ export interface CodeInputFieldProps {
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleNext?: (name: string) => void;
   ref?: React.RefObject<HTMLInputElement>;
-  handleBlur?: FocusEventHandler<HTMLInputElement> | undefined;
-  touched?: boolean;
-  errors?: string;
 }

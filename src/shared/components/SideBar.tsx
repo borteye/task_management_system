@@ -42,7 +42,7 @@ const SideBar = () => {
 
   return (
     <>
-      {isNavbarToggled && <BackDrop onClick={toggleNavbarHidden} screen="md" />}
+      {isNavbarToggled && <BackDrop close={toggleNavbarHidden} screen="md" />}
       <aside
         className={` ${isNavbarToggled ? "flex" : "hidden"} ${
           isExpanded

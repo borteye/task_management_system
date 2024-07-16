@@ -95,9 +95,6 @@ const EmailVerification = () => {
               ref={inputRefs.codeDigitOne}
               value={values.codeDigitOne}
               handleChange={handleChange}
-              handleBlur={handleBlur}
-              touched={touched.codeDigitOne}
-              errors={errors.codeDigitOne}
             />
             <CodeInputField
               name="codeDigitTwo"
@@ -105,9 +102,6 @@ const EmailVerification = () => {
               ref={inputRefs.codeDigitTwo}
               value={values.codeDigitTwo}
               handleChange={handleChange}
-              handleBlur={handleBlur}
-              touched={touched.codeDigitTwo}
-              errors={errors.codeDigitTwo}
             />
             <CodeInputField
               name="codeDigitThree"
@@ -115,9 +109,6 @@ const EmailVerification = () => {
               ref={inputRefs.codeDigitThree}
               value={values.codeDigitThree}
               handleChange={handleChange}
-              handleBlur={handleBlur}
-              touched={touched.codeDigitThree}
-              errors={errors.codeDigitThree}
             />
             <CodeInputField
               name="codeDigitFour"
@@ -125,9 +116,6 @@ const EmailVerification = () => {
               ref={inputRefs.codeDigitFour}
               value={values.codeDigitFour}
               handleChange={handleChange}
-              handleBlur={handleBlur}
-              touched={touched.codeDigitFour}
-              errors={errors.codeDigitFour}
             />
           </div>
           <Button label="Verify" />

@@ -103,7 +103,7 @@ const SignIn = () => {
               errors={errors.email}
             />
             {errors.email && touched.email ? (
-              <div className="text-error text-sm -mt-6">{errors.email}</div>
+              <div className="text-wine text-sm -mt-6">{errors.email}</div>
             ) : (
               false
             )}
@@ -122,7 +122,7 @@ const SignIn = () => {
               errors={errors.password}
             />
             {errors.password && touched.password ? (
-              <div className="text-error text-sm -mt-6 min-w-custom-428 md:w-custom-370">
+              <div className="text-wine text-sm -mt-6 min-w-custom-428 md:w-custom-370">
                 {errors.password}
               </div>
             ) : (

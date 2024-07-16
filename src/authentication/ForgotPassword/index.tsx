@@ -104,7 +104,7 @@ const ForgotPassword = () => {
                 errors={errors.email}
               />
               {errors.email && touched.email ? (
-                <div className="text-error text-sm -mt-2">{errors.email}</div>
+                <div className="text-wine text-sm -mt-2">{errors.email}</div>
               ) : (
                 false
               )}

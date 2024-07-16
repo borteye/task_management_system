@@ -21,8 +21,8 @@ const InputField: FC<InputFieldProps> = ({
 
   return (
     <div
-      className={`flex items-center justify-between py-2 px-4 rounded-2xl bg-lighter_shade_primary ${
-        touched && errors ? "border border-error" : ""
+      className={`flex items-center justify-between py-2 px-4 rounded-2xl bg-light_gray ${
+        touched && errors ? "border border-wine" : false
       }`}
     >
       {icon}

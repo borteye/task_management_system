@@ -8,3 +8,9 @@ interface SideBarLinks {
   inactiveIcon: HeroIconType;
 }
 
+interface TaskSummaryCardProps {
+  title: string;
+  count: number;
+  icon: HeroIconType;
+  color?: string;
+}

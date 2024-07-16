@@ -12,12 +12,10 @@ import {
 import storage from "redux-persist/lib/storage";
 import tokenReducer from "./features/tokenSlice";
 import toggleReducer from "./features/toggleSlice";
-// import userReducer from "./features/userSlice";
 
 const rootReducer = combineReducers({
   token: tokenReducer,
   toggle: toggleReducer,
-  //   user: userReducer,
 });
 
 const persistConfig = {

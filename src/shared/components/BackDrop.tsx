@@ -1,15 +1,22 @@
 import React from "react";
 
 interface BackDropProps {
-  onClick: () => void;
+  close: () => void;
   screen?: string;
+  backgroundColor?: string;
 }
 
-const BackDrop: React.FC<BackDropProps> = ({ onClick, screen }) => {
+const BackDrop: React.FC<BackDropProps> = ({
+  close,
+  screen,
+  backgroundColor,
+}) => {
   return (
     <div
-      className={`fixed inset-0 bg-black bg-opacity-50 z-50  ${screen}:hidden`}
-      onClick={onClick}
+      className={`fixed inset-0 ${
+        backgroundColor ? `${backgroundColor}` : "bg-black"
+      }  bg-opacity-50 z-50  ${screen}:hidden`}
+      onClick={close}
     ></div>
   );
 };

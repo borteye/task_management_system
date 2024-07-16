@@ -101,7 +101,7 @@ const ResetPassword = (props: Props) => {
                 errors={errors.password}
               />
               {errors.password && touched.password ? (
-                <div className="text-error text-sm -mt-2 min-w-custom-428 md:w-custom-370">
+                <div className="text-wine text-sm -mt-2 min-w-custom-428 md:w-custom-370">
                   {errors.password}
                 </div>
               ) : (
@@ -120,7 +120,7 @@ const ResetPassword = (props: Props) => {
                 errors={errors.confirmPassword}
               />
               {errors.confirmPassword && touched.confirmPassword ? (
-                <div className="text-error text-sm -mt-2">
+                <div className="text-wine text-sm -mt-2">
                   {errors.confirmPassword}
                 </div>
               ) : (

@@ -8,7 +8,7 @@ import { selectSideBarToggle } from "../redux/features/toggleSlice";
 const Layout = () => {
   const isSidebarToggled = useSelector(selectSideBarToggle);
   return (
-    <div className="flex h-full justify-end">
+    <div className="flex  justify-end bg-foreground_color">
       <SideBar />
       <div
         className={`w-full ${
@@ -18,7 +18,10 @@ const Layout = () => {
         } transition-all duration-300 relative`}
       >
         <NavBar />
+        <div className=" overflow-y-auto">
         <Outlet />
+        </div>
+        
       </div>
     </div>
   );

@@ -98,7 +98,7 @@ const SignUp = () => {
               errors={errors.username}
             />
             {errors.username && touched.username ? (
-              <div className="text-error text-sm -mt-6">{errors.username}</div>
+              <div className="text-wine text-sm -mt-6">{errors.username}</div>
             ) : (
               false
             )}
@@ -117,7 +117,7 @@ const SignUp = () => {
               errors={errors.email}
             />
             {errors.email && touched.email ? (
-              <div className="text-error text-sm -mt-6">{errors.email}</div>
+              <div className="text-wine text-sm -mt-6">{errors.email}</div>
             ) : (
               false
             )}
@@ -136,7 +136,7 @@ const SignUp = () => {
               errors={errors.password}
             />
             {errors.password && touched.password ? (
-              <div className="text-error text-sm -mt-6 min-w-custom-428 md:w-custom-370">
+              <div className="text-wine text-sm -mt-6 min-w-custom-428 md:w-custom-370">
                 {errors.password}
               </div>
             ) : (
@@ -157,7 +157,7 @@ const SignUp = () => {
               errors={errors.confirmPassword}
             />
             {errors.confirmPassword && touched.confirmPassword ? (
-              <div className="text-error text-sm -mt-6">
+              <div className="text-wine text-sm -mt-6">
                 {errors.confirmPassword}
               </div>
             ) : (

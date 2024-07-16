@@ -1,8 +1,6 @@
 import ReactLoading from "react-loading";
 
-type Props = {};
-
-const Loader = (props: Props) => {
+const Loader = () => {
   return <ReactLoading type="spin" color="#6C63FF" height={100} width={50} />;
 };
 

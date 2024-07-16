@@ -61,8 +61,8 @@ export const resetPasswordSchema = yup.object().shape({
 });
 
 export const emailVerificationSchema = yup.object().shape({
-  codeDigitOne: yup.number().min(1).required(),
-  codeDigitTwo: yup.number().min(1).required(),
-  codeDigitThree: yup.number().min(1).required(),
-  codeDigitFour: yup.number().min(1).required(),
+  codeDigitOne: yup.number().max(1).required(),
+  codeDigitTwo: yup.number().max(1).required(),
+  codeDigitThree: yup.number().max(1).required(),
+  codeDigitFour: yup.number().max(1).required(),
 });
