@@ -1,32 +1,41 @@
-export interface SignUpValues {
-    username: string;
-    email: string;
-    password: string;
-    confirmPassword: string;
+interface SignUpValues {
+  username: string;
+  email: string;
+  password: string;
+  confirmPassword: string;
 }
 
-export interface SignInValues{
-    email: string,
-    password: string
+interface SignInValues {
+  email: string;
+  password: string;
 }
 
-export interface ForgotPasswordValues{
-    email: string
+interface ForgotPasswordValues {
+  email: string;
 }
 
-export interface EmailVerificationCode {
-    verificationCode: string;
-  }
-
-export interface EmailVerificationValues{
-    codeDigitOne: string 
-    codeDigitTwo: string 
-    codeDigitThree: string 
-    codeDigitFour: string 
+interface EmailVerificationCode {
+  verificationCode: string;
 }
 
-export interface ResetPasswordValues{
-    password: string
-    confirmPassword: string
+interface EmailVerificationValues {
+  codeDigitOne: string;
+  codeDigitTwo: string;
+  codeDigitThree: string;
+  codeDigitFour: string;
 }
 
+interface ResetPasswordValues {
+  password: string;
+  confirmPassword: string;
+}
+
+type allUser = {
+  username: string;
+};
+
+interface IallUsers {
+  allUsers: {
+    allUsers: allUser[];
+  };
+}

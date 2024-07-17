@@ -13,11 +13,17 @@ import storage from "redux-persist/lib/storage";
 import tokenReducer from "./features/tokenSlice";
 import userReducer from "./features/userSlice";
 import toggleReducer from "./features/toggleSlice";
+import allUsersReducer from "./features/allUsersSlice";
+import tasksReducer from "./features/tasksSlice";
+import editTaskReducer from "./features/editTaskSlice";
 
 const rootReducer = combineReducers({
   token: tokenReducer,
   user: userReducer,
   toggle: toggleReducer,
+  allUsers: allUsersReducer,
+  tasks: tasksReducer,
+  editTask: editTaskReducer
 });
 
 const persistConfig = {

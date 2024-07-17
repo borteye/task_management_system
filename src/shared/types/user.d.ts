@@ -1,4 +1,4 @@
-export interface Token {
+ interface Token {
   token: {
     token: string | null;
   };
@@ -11,6 +11,6 @@ type User = {
   profile?: string;
 };
 
-export interface IUser {
+interface IUser {
   user: User;
 }

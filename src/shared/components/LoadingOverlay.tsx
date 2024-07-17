@@ -6,7 +6,7 @@ type LoadingOverlayProps = {
 
 const LoadingOverlay: FC<LoadingOverlayProps> = ({ children }) => {
   return (
-    <div className="fixed bg-overlay inset-0 flex justify-center items-center">
+    <div className="fixed bg-overlay z-custom-2000 inset-0 flex justify-center items-center">
       {children}
     </div>
   );

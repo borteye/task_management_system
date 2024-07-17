@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { Token } from "../../shared/types/user";
+
 
 const initialState = {
   token: null,

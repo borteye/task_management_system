@@ -1,7 +1,7 @@
 import React, { FC } from "react";
 import BackDrop from "../../../shared/components/BackDrop";
-import { BACKDROP_WHITE_BG } from "../../../shared/constants/colors";
 import CheckboxInput from "./CheckboxInput";
+import { BACKDROP_WHITE_BG } from "../../../shared/components/constants";
 
 interface FilterModalProps {
   close: () => void;

@@ -13,7 +13,7 @@ const BackDrop: React.FC<BackDropProps> = ({
 }) => {
   return (
     <div
-      className={`fixed inset-0 ${
+      className={`fixed max-h-screen inset-0 ${
         backgroundColor ? `${backgroundColor}` : "bg-black"
       }  bg-opacity-50 z-50  ${screen}:hidden`}
       onClick={close}

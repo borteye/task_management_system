@@ -4,7 +4,6 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { useFormik } from "formik";
 import { signInSchema } from "../../shared/validators/authSchema";
-import { SignInValues } from "../../shared/types/auth";
 import { useDispatch } from "react-redux";
 import { SignInError, SignInSuccess } from "../../shared/types/apiResponse";
 import { SET_TOKEN } from "../../redux/features/tokenSlice";
@@ -33,8 +32,6 @@ const SignIn = () => {
     const { success, data } = successData;
 
     if (!success) return;
-
-    console.log("data: ", data);
 
     dispatch(SET_TOKEN({ token: data.token }));
     dispatch(

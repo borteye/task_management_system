@@ -1,13 +1,13 @@
 import { JsxElement } from "typescript";
 
-export type HeroIconType = ForwardRefExoticComponent<
+type HeroIconType = ForwardRefExoticComponent<
   Omit<SVGProps<SVGSVGElement>, "ref"> & {
     title?: string;
     titleId?: string;
   } & RefAttributes<SVGSVGElement>
 >;
 
-export interface InputFieldProps {
+interface InputFieldProps {
   type: string;
   placeholder: string;
   icon?: HeroIconType;
@@ -19,10 +19,11 @@ export interface InputFieldProps {
   errors?: string;
 }
 
-export interface CodeInputFieldProps {
+interface CodeInputFieldProps {
   name: string;
   value?: string;
   handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   handleNext?: (name: string) => void;
   ref?: React.RefObject<HTMLInputElement>;
 }
+

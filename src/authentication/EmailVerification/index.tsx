@@ -3,7 +3,7 @@ import Button from "../components/Button";
 import { useInputRefs } from "../hooks/useInputRefs";
 import { useFormik } from "formik";
 import { emailVerificationSchema } from "../../shared/validators/authSchema";
-import { EmailVerificationValues } from "../../shared/types/auth";
+
 import {
   EmailVerificationError,
   EmailVerificationSuccess,

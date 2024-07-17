@@ -1,21 +1,21 @@
 import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../redux/features/tokenSlice";
+import { selectUserId } from "../../redux/features/userSlice";
 
-export const useEmailVerification = (onSuccess: any, onError: any) => {
+export const useDeleteTask = (onSuccess: any, onError: any) => {
   const token = useSelector(selectToken);
 
-  const url = async (body: EmailVerificationCode): Promise<any> => {
+  const url = async (taskId: number): Promise<any> => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_EMAIL_VERIFICATION}`,
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_DELETE_TASK}/${taskId}`,
         {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          method: "POST",
-          body: JSON.stringify(body),
+          method: "DELETE",
         }
       );
 

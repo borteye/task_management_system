@@ -10,8 +10,9 @@ import {
   Tooltip,
   Legend,
 } from "chart.js";
-import { barChartData } from "../../../shared/constants/dummyData";
+
 import useScreenWidth from "../../../shared/utils/useScreenWidth";
+import { barChartData } from "../../../shared/components/constants";
 
 ChartJS.register(
   CategoryScale,

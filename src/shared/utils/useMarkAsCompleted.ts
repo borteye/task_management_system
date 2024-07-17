@@ -2,13 +2,13 @@ import { useMutation } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../redux/features/tokenSlice";
 
-export const useEmailVerification = (onSuccess: any, onError: any) => {
+export const useMarkAsCompleted = (onSuccess: any, onError: any) => {
   const token = useSelector(selectToken);
 
-  const url = async (body: EmailVerificationCode): Promise<any> => {
+  const url = async (body: MarkAsCompleteValues): Promise<any> => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_EMAIL_VERIFICATION}`,
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_MARK_AS_COMPLETED}`,
         {
           headers: {
             "Content-Type": "application/json",

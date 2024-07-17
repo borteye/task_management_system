@@ -1,21 +1,19 @@
-import { useMutation } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { useSelector } from "react-redux";
 import { selectToken } from "../../redux/features/tokenSlice";
 
-export const useEmailVerification = (onSuccess: any, onError: any) => {
+export const useGetUsers = () => {
   const token = useSelector(selectToken);
 
-  const url = async (body: EmailVerificationCode): Promise<any> => {
+  const url = async (): Promise<any> => {
     try {
       const response = await fetch(
-        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_EMAIL_VERIFICATION}`,
+        `${process.env.REACT_APP_BASE_URL}/${process.env.REACT_APP_GET_USER}`,
         {
           headers: {
             "Content-Type": "application/json",
             Authorization: `Bearer ${token}`,
           },
-          method: "POST",
-          body: JSON.stringify(body),
         }
       );
 
@@ -28,9 +26,9 @@ export const useEmailVerification = (onSuccess: any, onError: any) => {
       throw new Error(`${error.message}`);
     }
   };
-  return useMutation({
-    mutationFn: url,
-    onSuccess,
-    onError,
+  return useQuery({
+    queryKey: ["get-users"],
+    queryFn: url,
+    staleTime: Infinity,
   });
 };

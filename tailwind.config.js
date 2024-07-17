@@ -13,9 +13,9 @@ module.exports = {
         overlay: "#00000057",
         foreground_color: "#F0F1F4",
         wine: "#B80020",
-        light_wine: "#FFF0F0 ",
+        light_wine: "#FFF0F0",
         blue: "#3754DB",
-        light_blue: "##F2F4FD",
+        light_blue: "#F2F4FD",
         amber : "#DF9A00",
         light_amber: "#FFFDF5",
         green:"#00C271",
@@ -53,7 +53,10 @@ module.exports = {
         'custom-35': '35px',
       },
       zIndex:{
+        'custom-100': '100',
+        'custom-200': '200',
         'custom-1000': '1000',
+        'custom-2000': '2000',
       }
     },
   },

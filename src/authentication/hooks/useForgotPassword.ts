@@ -1,5 +1,5 @@
 import { useMutation } from "@tanstack/react-query";
-import { ForgotPasswordValues } from "../../shared/types/auth";
+
 
 export const useForgotPassword = (onSuccess: any, onError: any) => {
   const url = async (body: ForgotPasswordValues): Promise<any> => {

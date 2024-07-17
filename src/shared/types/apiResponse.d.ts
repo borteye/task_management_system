@@ -1,6 +1,6 @@
 import { User } from "./user";
 
-export interface SignInSuccess {
+interface SignInSuccess {
   authentication: boolean;
   data: {
     message: string;
@@ -10,24 +10,24 @@ export interface SignInSuccess {
   success: boolean;
 }
 
-export interface SignInError {
+interface SignInError {
   success: boolean;
   error: string;
   errorMessage: string;
   authentication: boolean;
 }
 
-export interface SignUpSuccess {
+interface SignUpSuccess {
   success: boolean;
- message: string 
+  message: string;
 }
 
-export interface SignUpError {
+interface SignUpError {
   success: boolean;
   error: string;
 }
 
-export interface ForgotPasswordSuccess {
+interface ForgotPasswordSuccess {
   authentication: boolean;
   data: {
     message: string;
@@ -36,18 +36,18 @@ export interface ForgotPasswordSuccess {
   success: boolean;
 }
 
-export interface ForgotPasswordError {
+interface ForgotPasswordError {
   success: boolean;
   error: string;
   errorMessage: string;
 }
 
-export interface EmailVerificationSuccess {
+interface EmailVerificationSuccess {
   data: { message: string };
   success: boolean;
 }
 
-export interface EmailVerificationError {
+interface EmailVerificationError {
   message?: string;
   success: boolean;
   error: string;
@@ -55,7 +55,7 @@ export interface EmailVerificationError {
   authentication: boolean;
 }
 
-export interface ResendCodeSuccess {
+interface ResendCodeSuccess {
   success: boolean;
   data: {
     message: string;
@@ -63,23 +63,69 @@ export interface ResendCodeSuccess {
   authentication: boolean;
 }
 
-export interface ResendCodeError {
+interface ResendCodeError {
   message?: string;
   success: boolean;
   error: string;
   errorMessage: string;
 }
 
-export interface ResetPasswordSuccess {
+interface ResetPasswordSuccess {
   data: {
     message: string;
   };
   success: boolean;
 }
 
-export interface ResetPasswordError {
+interface ResetPasswordError {
   message?: string;
   success: boolean;
   error: string;
   errorMessage: string;
+}
+
+interface AddTaskSuccess {
+  success: boolean;
+  message: string;
+}
+
+interface AddTaskError {
+  success: boolean;
+  error: string;
+}
+
+interface EditTaskSuccess {
+  success: boolean;
+  message: string;
+}
+
+interface EditTaskError {
+  success: boolean;
+  error: string;
+}
+
+interface GetTasks {
+  success: boolean;
+  tasks: {
+    task_id: number;
+    title: string;
+    user_id: number;
+    assigned_to: string;
+    description: string;
+    assigned_by: string;
+    created_at: string;
+    due_date: string;
+    priority_level: string;
+    stage: string;
+  }[];
+}
+
+interface ModificationSuccess {
+  success: boolean;
+  message: string;
+}
+
+interface ModificationError {
+  success: boolean;
+  error: string;
 }

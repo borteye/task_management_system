@@ -1,6 +1,7 @@
-export interface Toggle {  
-    toggle:{
-        SideBarToggle: boolean
-        NavBarToggle: boolean
-    }
+interface Toggle {
+  toggle: {
+    SideBarToggle: boolean;
+    NavBarToggle: boolean;
+    EditTaskToggle: boolean;
+  };
 }

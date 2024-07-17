@@ -1,5 +1,4 @@
-import React, { FC } from "react";
-import { ChevronUpDownIcon, CalendarIcon } from "@heroicons/react/24/outline";
+import React, { FC, FocusEventHandler } from "react";
 
 interface InputFieldProps {
   label?: string;
@@ -9,29 +8,48 @@ interface InputFieldProps {
   border?: string;
   placeholder?: string;
   py?: string;
+  value?: string;
+  disabled?: boolean;
+  handleChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  handleBlur?: FocusEventHandler<HTMLInputElement>;
+  touched?: boolean;
+  errors?: string;
+  name?: string;
 }
 
 const InputField: FC<InputFieldProps> = ({
-  type,
+  type = "text",
   label,
   width,
-  rounded,
-  border,
+  rounded = "xl",
+  border = "border",
   placeholder,
   py,
+  disabled = false,
+  value,
+  handleChange,
+  handleBlur,
+  touched,
+  errors,
+  name,
 }) => {
   return (
     <div className="flex-1">
-      <div>{label}</div>
+      {label && <div>{label}</div>}
       <div
-        className={`flex items-center px-2 ${py}  ${
-          width ? `sm-w-${width}` : "sm:w-custom-70%"
-        } ${border ? `${border}` : "border"} rounded-${rounded}`}
+        className={`flex items-center px-2 border ${py || ""} ${
+          width ? `sm:w-${width}` : "sm:w-custom-70%"
+        } ${touched && errors ? "border-wine" : border} rounded-${rounded}`}
       >
         <input
           type={type}
+          value={value}
+          name={name}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          disabled={disabled}
           placeholder={placeholder}
-          className="w-custom-90% sm:w-full outline-none bg-transparent  text-xl  px-1 py-1 "
+          className="w-custom-90% sm:w-full outline-none bg-transparent text-xl px-1 py-1"
         />
       </div>
     </div>

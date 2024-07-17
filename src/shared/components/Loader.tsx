@@ -1,5 +1,5 @@
 import ReactLoading from "react-loading";
-import { LOADER_COLOR } from "../constants/colors";
+import { LOADER_COLOR } from "./constants";
 
 const Loader = () => {
   return (

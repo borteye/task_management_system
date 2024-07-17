@@ -1,7 +1,6 @@
 import { useMutation } from "@tanstack/react-query";
 import { selectToken } from "../../redux/features/tokenSlice";
 import { useSelector } from "react-redux";
-import { ResetPasswordValues } from "../../shared/types/auth";
 
 export const useResetPassword = (onSuccess: any, onError: any) => {
   const token = useSelector(selectToken);

@@ -2,10 +2,11 @@ import { ChevronRightIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import { ArrowRightStartOnRectangleIcon } from "@heroicons/react/24/solid";
 import { useState } from "react";
 import Tooltip from "./Tooltip";
-import { Routes } from "../constants/sidebar-links";
+
 import { useDispatch, useSelector } from "react-redux";
 import {
   selectNavBarToggle,
+  SET_EDIT_TASK_TOGGLE,
   SET_NAVBAR_TOGGLE,
   SET_SIDEBAR_TOGGLE,
 } from "../../redux/features/toggleSlice";
@@ -16,6 +17,10 @@ import { CLEAR_USER, selectUsername } from "../../redux/features/userSlice";
 import capitalize from "../utils/capitalize";
 import { CLEAR_TOKEN } from "../../redux/features/tokenSlice";
 import { toast } from "sonner";
+import { Routes } from "./constants";
+import { CLEAR_TASKS } from "../../redux/features/tasksSlice";
+import { CLEAR_EDIT_TASK } from "../../redux/features/editTaskSlice";
+import { CLEAR_ALL_USERS } from "../../redux/features/allUsersSlice";
 
 const SideBar = () => {
   const [isExpanded, setIsExpanded] = useState<boolean>(false);
@@ -47,8 +52,12 @@ const SideBar = () => {
 
   const handleSignOut = () => {
     dispatch(CLEAR_USER());
+    dispatch(CLEAR_TASKS());
+    dispatch(CLEAR_EDIT_TASK())
+    dispatch(CLEAR_ALL_USERS())
     dispatch(SET_SIDEBAR_TOGGLE(false));
     dispatch(SET_NAVBAR_TOGGLE(false));
+    dispatch(SET_EDIT_TASK_TOGGLE(false))
     dispatch(CLEAR_TOKEN());
 
     toast.success("Signed out successfully", {

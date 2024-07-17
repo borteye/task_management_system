@@ -8,7 +8,6 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { useFormik } from "formik";
 import { signUpSchema } from "../../shared/validators/authSchema";
-import { SignUpValues } from "../../shared/types/auth";
 import { SignUpError, SignUpSuccess } from "../../shared/types/apiResponse";
 import { toast } from "sonner";
 import { useSignUp } from "../hooks/useSignUp";

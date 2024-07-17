@@ -3,7 +3,6 @@ import InputField from "../components/InputField";
 import Button from "../components/Button";
 import { useFormik } from "formik";
 import { forgotPasswordSchema } from "../../shared/validators/authSchema";
-import { ForgotPasswordValues } from "../../shared/types/auth";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import {

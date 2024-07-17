@@ -1,6 +1,4 @@
 import { useMutation } from "@tanstack/react-query";
-import { SignUpValues } from "../../shared/types/auth";
-
 
 export const useSignUp = (onSuccess: any, onError: any) => {
   const url = async (body: SignUpValues): Promise<any> => {

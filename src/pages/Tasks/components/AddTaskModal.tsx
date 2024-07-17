@@ -1,48 +1,74 @@
-import React, { FC } from "react";
-import BackDrop from "../../../shared/components/BackDrop";
-import InputField from "./InputField";
-import Button from "./Button";
-import SelectionModal from "./SelectionModal";
+import { FC } from "react";
+import { useSelector } from "react-redux";
+import { toast } from "sonner";
+import { useQueryClient } from "@tanstack/react-query";
+import {
+  selectUserId,
+  selectUsername,
+} from "../../../redux/features/userSlice";
+import { useAddTask } from "../../../shared/utils/useAddTask";
+import TaskForm from "./TaskForm";
+import {
+  AddTaskSuccess,
+  AddTaskError,
+} from "../../../shared/types/apiResponse";
 
-interface AddTaskModelProps {
+interface AddTaskModalProps {
   close: () => void;
   isAddTaskVisible: boolean;
 }
 
-const AddTaskModal: FC<AddTaskModelProps> = ({ close, isAddTaskVisible }) => {
-  return (
-    <>
-      {isAddTaskVisible && <BackDrop close={close} />}
-      <div
-        className={` ${
-          isAddTaskVisible ? "block" : "hidden"
-        } absolute left-0 right-0 bottom-0 top-20 flex flex-col p-6 font-poppins-regular  justify-center z-custom-1000 h-fit w-custom-90% max-w-custom-600 mx-auto bg-white rounded-md`}
-      >
-        <h1 className="text-xl font-poppins-medium">Add Task</h1>
+const AddTaskModal: FC<AddTaskModalProps> = ({ close, isAddTaskVisible }) => {
+  const queryClient = useQueryClient();
+  const userId = useSelector(selectUserId);
+  const username = useSelector(selectUsername);
 
-        <form className="flex flex-col gap-y-8">
-          <InputField label="Task Title" rounded="sm" type="text" />
-          <SelectionModal label="Assign Task To:" rounded="sm" />
-          <div className="sm:flex w-full gap-x-6 justify-between">
-            <SelectionModal label="Task Stage" width="4/5" rounded="sm" />
-            <InputField
-              label="Task Date"
-              width="4/5"
-              type="date"
-              rounded="sm"
-            />
-          </div>
-          <div className="sm:flex w-full gap-x-6 justify-between">
-            <SelectionModal label="Priority Level" width="4/5" rounded="sm" />
-            <InputField label="Due Date" width="4/5" type="date" rounded="sm" />
-          </div>
-          <div className="flex justify-end gap-x-8">
-            <Button label="Cancel" background={false} onClick={close} />
-            <Button label="Submit" background={true} />
-          </div>
-        </form>
-      </div>
-    </>
+  const initialValues = {
+    title: "",
+    description: "",
+    assigned_to: "",
+    stage: "",
+    priority_level: "",
+    due_date: "",
+  };
+
+  const onSuccess = (successData: AddTaskSuccess) => {
+    if (!successData.success) return;
+    queryClient.invalidateQueries({ queryKey: ["tasks"] });
+    close();
+    toast.success(successData.message, {
+      position: "top-right",
+    });
+  };
+
+  const onError = (errorData: Error) => {
+    const errorResponse: AddTaskError = JSON.parse(errorData.message);
+    if (errorResponse.success) return;
+    toast.error(`${errorResponse.error} 🙊`, {
+      position: "top-right",
+    });
+  };
+
+  const { mutate, isPending } = useAddTask(onSuccess, onError);
+
+  const onSubmit = (values: TaskValues) => {
+    const body = {
+      ...values,
+      user_id: userId,
+      assigned_by: username,
+    };
+    mutate(body);
+  };
+
+  return (
+    <TaskForm
+      initialValues={initialValues}
+      onSubmit={onSubmit}
+      close={close}
+      isVisible={isAddTaskVisible}
+      isPending={isPending}
+      title="Add Task"
+    />
   );
 };
 

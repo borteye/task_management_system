@@ -9,8 +9,16 @@ interface SideBarLinks {
 }
 
 interface TaskSummaryCardProps {
-  title: string;
-  count: number;
-  icon: HeroIconType;
-  color?: string;
+  tasks?:any
+  // title: string;
+  // count?: number;
+  // icon: HeroIconType;
+  // color?: string;
 }
+
+interface TaskStage{
+OPEN: string,
+IN_PROGRESS: string,
+COMPLETED: string
+}
+
