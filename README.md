@@ -1,110 +1,153 @@
-# Task Management System
+# Task Management System (Frontend)
 
-This is a Task Management System built with React, TypeScript, Express.js, and PostgreSQL. The frontend is built with React and TypeScript, and the backend is built with Express.js and Typescript. The project also includes a PostgreSQL database.
+A robust, responsive, and modern Task Management System frontend built with **React** and **TypeScript**. This documentation is tailored to industry standards and covers architecture, project structure, features, environment settings, component organization, routing, state management, and customization.
+
+---
 
 ## Table of Contents
 
+- [Overview](#overview)
 - [Features](#features)
-- Prerequisites
-- [Installation](#installation)
-- [Running the Application](#running-the-application)
-- [Project Structure]
+- [Architecture](#architecture)
+- [Project Structure](#project-structure)
+- [Installation & Setup](#installation--setup)
+- [Environment Variables](#environment-variables)
+- [Routing](#routing)
+- [State Management](#state-management)
+- [UI/UX and Styling](#uiux-and-styling)
+- [Component Structure](#component-structure)
+- [API Integration](#api-integration)
+- [Customization & Extensibility](#customization--extensibility)
+- [Contributing](#contributing)
+- [License](#license)
 
+---
+
+## Overview
+
+This frontend is the user interface for a fullstack Task Management System. It enables users to manage tasks, authenticate, organize workflow stages, and visualize task data with an intuitive dashboard.
+
+**Tech Stack:**
+- React (with TypeScript)
+- Redux Toolkit (with persist)
+- React Query
+- Tailwind CSS
+- Sonner (for notifications)
+- Heroicons
+
+---
 
 ## Features
 
-- Create, read, update, and delete tasks
-- User authentication and authorization
-- Task prioritization and categorization
-- Responsive design
+- **User Authentication:** Sign up, sign in, password reset, email verification, JWT-protected routes.
+- **Task Management:** Create, read, update, delete tasks; mark as completed; assign, categorize, and prioritize tasks.
+- **Task Stages:** Tasks can be Open, In Progress, or Completed.
+- **Dashboard:** Visual summaries and analytics (e.g., bar charts for priorities, summary cards).
+- **Responsive Design:** Fully functional on mobile, tablet, and desktop.
+- **User Roles:** Assign tasks to users, see who is responsible.
+- **Notifications:** Real-time feedback for actions (success, errors, etc.).
+- **Reusable UI Components:** Sidebar, Navbar, Cards, Modals, Input fields, etc.
 
-## Prerequisites
+---
 
-Before you begin, ensure you have met the following requirements:
+## Architecture
 
-- Node.js and npm installed on your machine
-- PostgreSQL installed and running
+- **Component-driven:** Follows React best practices with atomic and reusable components.
+- **State Management:** Global state via Redux Toolkit and persistent storage; data-fetching via React Query.
+- **Routing:** `react-router-dom` for public/protected routes, nested layouts.
+- **API Layer:** All communication with the backend uses environment-based endpoints, easily configurable.
+- **Styling:** Utility-first with Tailwind CSS and custom fonts.
 
+---
 
-## Installation
+## Project Structure
 
-### Backend (Express.js)
+```
+task_management_system/
+├── public/
+│   └── index.html
+├── src/
+│   ├── App.tsx
+│   ├── index.tsx
+│   ├── index.css
+│   ├── assets/
+│   │   └── images/ (profile, icons, etc.)
+│   ├── authentication/
+│   │   ├── SignIn.tsx
+│   │   ├── SignUp.tsx
+│   │   ├── ForgotPassword.tsx
+│   │   ├── EmailVerification.tsx
+│   │   └── ResetPassword.tsx
+│   ├── layout/
+│   │   └── Layout.tsx
+│   ├── pages/
+│   │   ├── Dashboard/
+│   │   ├── Tasks/
+│   │   ├── Open/
+│   │   ├── InProgress/
+│   │   └── Completed/
+│   ├── redux/
+│   │   ├── store.ts
+│   │   └── features/
+│   ├── shared/
+│   │   ├── components/
+│   │   └── utils/
+│   ├── middleware/
+│   │   └── ProtectedRoutes.tsx
+│   └── types/
+│       └── (TypeScript types)
+├── .env.local.example
+├── package.json
+├── tsconfig.json
+└── README.md
+```
 
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/borteye/task_management_system_backend.git
-    cd task_management_system_backend
-    ```
+**Key Folders:**
+- `src/pages`: Main views (Dashboard, Tasks, etc.)
+- `src/authentication`: Auth-related screens
+- `src/layout`: App shell (Sidebar, Navbar, etc.)
+- `src/redux`: State logic for user, tasks, UI toggles
+- `src/shared`: Reusable components and utilities
 
+---
 
-3. Install dependencies:
-    ```sh
-    npm install
-    ```
+## Installation & Setup
 
-4. Create a `.env` file in the `backend` directory and add the following environment variables:
-    ```env
-    PORT=5000
-    ACCESS_TOKEN_SECRET= your access token secret key
-    PASSWORD_RESET_TOKEN_SECRET= your access token secret key
-    MAILER_USERNAME = your mailer username/email address for NODEMAILER
-    MAILER_PASSWORD = your mailer password	
+### Prerequisites
 
-    ```
+- Node.js (v16+ recommended)
+- npm
 
-5. CORS  `http://localhost:3000 ` 
-    ```
+### Steps
 
-6. Run the migrations to set up the database:
+1. **Clone the repository:**
+   ```bash
+   git clone https://github.com/borteye/task_management_system.git
+   cd task_management_system
+   ```
 
-## Database Setup ### Create Database ```sql 
+2. **Install dependencies:**
+   ```bash
+   npm install
+   ```
 
-CREATE DATABASE task_management_system;
+3. **Set up environment variables:**  
+   Copy `.env.local.example` to `.env.local` and edit as needed.
 
-CREATE TABLE user (
-  userid SERIAL PRIMARY KEY,
-  username VARCHAR(100) NOT NULL,
-  email VARCHAR(100) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL
-);
-    
-CREATE TABLE verification_code (
-  code_id SERIAL PRIMARY KEY,
-  code VARCHAR(10) NOT NULL,
-  user_email VARCHAR(100) NOT NULL,
-);
+4. **Start the development server:**
+   ```bash
+   npm start
+   ```
+   The app will be available at [http://localhost:3000](http://localhost:3000)
 
-CREATE TABLE tasks (
-  task_id SERIAL PRIMARY KEY,
-  title VARCHAR(255) NOT NULL,
-  user_id INT NOT NULL,
-  assigned_to VARCHAR(100),
-  stage VARCHAR(50),
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  priority_level VARCHAR(50),
-  due_date VARCHAR(50),
-  assigned_by VARCHAR(100),
-  description TEXT,
-);
+---
 
+## Environment Variables
 
-### Frontend (React)
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/borteye/task_management_system.git
-    cd task_management_system
-    ```
+Configure these in `.env.local`:
 
-
-2. Install dependencies:
-    ```sh
-    npm install
-    ```
-
-3. Create a `.env.local` file in the `frontend` directory and add the following environment variable:
-    ```env
-    REACT_APP_ BASE_URL=http://localhost:5000
-	
+```env
+REACT_APP_BASE_URL=http://localhost:5000
 REACT_APP_SIGN_IN=auth/signIn
 REACT_APP_SIGN_UP=auth/signUp
 REACT_APP_FORGOT_PASSWORD=auth/forgot-password
@@ -114,90 +157,89 @@ REACT_APP_RESEND_VERIFICATION_CODE=auth/resend-verification-code
 REACT_APP_GET_USER=auth/get-users
 REACT_APP_TASKS_URL=tasks/my-task
 REACT_APP_ADD_TASK=tasks/add-task
+REACT_APP_EDIT_TASK=tasks/edit-task
 REACT_APP_MARK_AS_COMPLETED=tasks/mark-as-completed
 REACT_APP_DELETE_TASK=tasks/delete-task
-REACT_APP_EDIT_TASK=tasks/edit-task
+```
 
+---
 
+## Routing
 
+- **Public Routes:**
+  - `/` – Sign In
+  - `/sign-up` – Sign Up
+  - `/forgot-password` – Forgot Password
+  - `/reset-password` – Reset Password
 
-## Running the Application
+- **Protected Routes (JWT required):**
+  - `/email-verification`
+  - `/dashboard`
+  - `/my-tasks`
+  - `/my-tasks/open`
+  - `/my-tasks/in-progress`
+  - `/my-tasks/completed`
 
-### Backend
+**Routing is managed in `src/App.tsx` using `react-router-dom` v6+ with nested layouts and code splitting for performance.**
 
-1. Start the backend server:
-    ```sh
-    npm start
-    ```
+---
 
-### Frontend
+## State Management
 
-1. Start the frontend development server:
-    ```sh
-    npm start
-    ```
+- **Redux Toolkit:** All global state (auth, user, UI toggles, tasks).
+- **Redux Persist:** LocalStorage persistence for user sessions and state.
+- **React Query:** For server state, data fetching, caching, and synchronization.
+- **Slices:** Each state domain (user, tasks, toggles) has its own slice under `redux/features`.
 
-2. Open your browser and navigate to `http://localhost:3000`.
+---
 
-### Project Structure
+## UI/UX and Styling
 
-    ```sh
-    npm start
-    ```
-/src
-  /app
-    /controllers
-      auths.ts
-      task.ts
-    /queries
-      auths.ts
-      task.ts
-    /routers
-      auths.ts
-      task.ts
-  /config
-    constants.ts
-    database.ts
-  /helpers
-    bcryptHelper.ts
-    mailer.ts
-  /middlewares
-    JWTAuthenticator.ts
-  /types
-    Auth.d.ts
-    User.d.ts
-  /utils
-    MailMessage.ts
-    TokenGenerator.ts
-    verificationCodeGenerator.ts
-  /validators
-    authSchemas.ts
-    formSchema.ts
-  server.ts
-.gitignore
-package-lock.json
-package.json
-tsconfig.json
+- **Tailwind CSS:** Utility classes for styling and responsiveness.
+- **Custom Fonts:** Poppins (Regular, Medium, SemiBold, Bold) loaded in `src/index.css`.
+- **Heroicons:** For consistent SVG icons.
+- **Sonner:** For toast notifications and alerts.
+- **Responsive Layout:** Layout adapts for mobile, tablet, and desktop.
 
+---
 
+## Component Structure
 
-### Explanation
+- **Layout:** `src/layout/Layout.tsx` combines Sidebar, Navbar, and Outlet for nested views.
+- **Sidebar & Navbar:** Found under `src/shared/components/`, context-aware and responsive.
+- **Dashboard:** `src/pages/Dashboard/` provides cards and charts for task analytics.
+- **Tasks:** CRUD operations, search/filter, and categorization.
+- **Reusable Components:** Inputs, Cards, Modals, Tooltips, BackDrop, etc.
+- **Custom Hooks:** (e.g., `useTasks` for data fetching)
 
-- **/src**: Main source directory.
-  - **/app**: Contains the core application logic.
-    - **/controllers**: Handles incoming requests and returns responses.
-    - **/queries**: Contains database query logic.
-    - **/routers**: Defines application routes.
-  - **/config**: Configuration files.
-  - **/helpers**: Utility functions and helpers.
-  - **/middlewares**: Middleware functions for request handling.
-  - **/types**: TypeScript type definitions.
-  - **/utils**: Utility classes and functions.
-  - **/validators**: Validation schemas.
-- **server.ts**: Entry point of the application.
-- **.gitignore**: Specifies files and directories to be ignored by Git.
-- **package-lock.json**: Auto-generated file that locks the versions of a project’s dependencies.
-- **package.json**: Contains project metadata and dependencies.
-- **tsconfig.json**: TypeScript configuration file.
+---
 
+## API Integration
 
+- **Endpoints:** All API URLs are environment-based and imported from `.env.local`.
+- **Auth:** JWT-based authentication; tokens stored in Redux and persisted.
+- **Error Handling:** Global toast notifications for all API interactions.
+
+---
+
+## Customization & Extensibility
+
+- **Adding New Pages:** Create a folder in `src/pages/` and add to routing in `App.tsx`.
+- **Adding State:** Create a new slice under `redux/features` and wire up in `store.ts`.
+- **Styling:** Extend Tailwind config or add custom CSS in `src/index.css`.
+- **API Changes:** Update endpoints in `.env.local` and adjust services/hooks as needed.
+
+---
+
+## Contributing
+
+Contributions, issues, and feature requests are welcome!  
+Please read the [CONTRIBUTING.md](CONTRIBUTING.md) for more details.
+
+---
+
+## License
+
+This project is licensed under the MIT License.
+
+---
